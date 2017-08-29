@@ -4,6 +4,7 @@ function page(question, answer1, answer2, answer3, answer4) {
     this.answer2 = answer2;
     this.answer3 = answer3;
     this.answer4 = answer4;
+    
 }
 
 var page1 = new page("are you old?", "yes", "no", "blue", "ques");
@@ -12,10 +13,10 @@ var page3 = new page("Kim", "green", 48, "june")
 var page4 = new page("are you old?", "yes", "no", "blue", "ques");
 var page5 = new page("Sally", "Rally", 48, "green");
 var page6 = new page("Kim", "green", 48, "june")
-console.log("horray", page1);
+
 function check(px) {
     var counter = 0;
-  
+
     $.each(px, function (key, value) {
         counter++;
 
@@ -25,6 +26,7 @@ function check(px) {
         } else {
             
         $(".answer").append("<h2 id='line" +counter+ "'>"+value+"</h2>")
+        
         }
         if(px === page1){
             $("#line2").insertAfter("#line4");
@@ -44,15 +46,31 @@ function check(px) {
         if(px === page6){
             $("#line2").insertAfter("#line3");
         }
-
     })
+    myScore(px);
+}
+   
+function myScore(){
+$("h2").on("click", function(px){
+    
+                if($(this) === px.answer1){
+                   console.log("if");
+                }
+    
+                else{
+                    console.log("else");
+                }
+            })
+        }
+    
+    
 
 
-    $("h2").on("click", function () {
 
 
 
-    })
+
+function animate(){
 
 }
 
@@ -60,10 +78,7 @@ function check(px) {
 
 
 
-
-
-
-check(page3);
+check(page1);
 // check(page2);
 // check(page3);
 // check(page4);
