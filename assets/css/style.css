@@ -3,3 +3,11 @@ h2{
     font-weight: 400;
     padding: 10px;
 }
+
+div{
+    padding:20px;
+}
+
+.animate{
+    background-color: black;
+}
