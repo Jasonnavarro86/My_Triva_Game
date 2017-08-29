@@ -105,7 +105,7 @@ function animateRight() {
     $("<div>").addClass("gifBox").html(questions[pageNum].gif).appendTo("body")
     pageNum++;
     rightAns++;
-    console.log('test');
+
 }
 
 function animateWrong(){
@@ -115,9 +115,21 @@ function animateWrong(){
 
 }
 
-function rightWrongBox(){
+function scoreDisplay(){
     $(".question").hide()
     $(".answer").hide()
     $("<div>").html().appendTo("body")    
     $("<div>").html().appendTo("body")
+}
+
+setTimer(5, "#timer");
+function setTimer(secs, targ){
+    var target1 = $(targ);
+    target1.html("Time Left "+ secs)
+    if(secs < 1){
+        clearTimeout(timer);
+        secs=30;
+    }
+    secs--;
+    var timer = setTimeout('setTimer('+secs+',"'+targ+'")',1000);
 }
