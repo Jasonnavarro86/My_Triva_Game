@@ -1,4 +1,4 @@
-// My triva info inside of an object that is inside an array. 
+// START: My triva info inside of an object that is inside an array. 
 var questions = [{
         question: "Who Played Spiderman in Spiderman Home Coming?",
         Ans1: {
@@ -61,30 +61,29 @@ var questions = [{
         gif2: "<img src='http://www.lovethisgif.com/uploaded_images/63193-Guardians-Of-The-Galaxy-Rocket-Gif-Reaction-Gif.gif'/>"
     },
 ];
-
+// START: My global variables that change the score, the timer resets, and the object array #. pageNum var is the most important to keep changing the obj array questions and anwers.
 var wrongAns = 0;
 var rightAns = 0;
 var pageNum = 0;
 var timer;
 var timer1;
-
+// START: This function () Creates all my html with jQuery holding the object info. 
 function createPage() {
-
+    // These vars take my Ans1 object properties and stores them in an array (var storeQs) that allows me to access the answers.
     var storeQs = Object.keys(questions[pageNum].Ans1)
     var divQ1 = storeQs[0];
     var divQ2 = storeQs[1];
     var divQ3 = storeQs[2];
     var divQ4 = storeQs[3];
-
+    // My html with obj info.
     $("<div>").addClass("container question btn").html(questions[pageNum].question).appendTo("body")
     $("<div>").addClass("container answer btn ").html(questions[pageNum].Ans1[divQ1] + "?").appendTo("body")
     $("<div>").addClass("container answer btn ").html(questions[pageNum].Ans1[divQ2] + "?").appendTo("body")
     $("<div>").addClass("container answer btn").html(questions[pageNum].Ans1[divQ3] + "?").appendTo("body")
     $("<div>").addClass("container answer btn").html(questions[pageNum].Ans1[divQ4] + "?").appendTo("body")
-    
 }
 createPage();
-
+// START: This function() is for when a player clicks an answer the next functions are called. 
 function getAnswer() {
     $(".answer").on("click", function () {
         if ($(this).html() === questions[pageNum].Ans1.q3 + "?") {
@@ -99,7 +98,7 @@ function getAnswer() {
     })
 }
 getAnswer();
-
+// START: If the player clicks the correct answer this function() clears timers and hides divs created before and creates new ones with "great job!" info, and calls timer. 
 function animateRight() {
     clearTimeout(timer);
     clearTimeout(timer1);
@@ -107,9 +106,9 @@ function animateRight() {
     $(".answer").hide()
     $("<div>").addClass("animateBox answer1 container").html("Great job! " + questions[pageNum].Ans1.q3 + " is the right answer!").appendTo("body")
     $("<div>").addClass("gifBox text-center container").html(questions[pageNum].gif).appendTo("body")
-    goodTimer(5, "#timer");
+    goodTimer(4, "#timer");
 }
-
+// START: If the player clicks the wrong answer this function() brings the "Ouch!" info , and calls timer.
 function animateWrong() {
     clearTimeout(timer);
     clearTimeout(timer1);
@@ -117,11 +116,10 @@ function animateWrong() {
     $(".answer").hide()
     $("<div>").addClass("animateBox answer1 container").html("Ouch! " + questions[pageNum].Ans1.q3 + " was the right answer.").appendTo("body")
     $("<div>").addClass("gifBox text-ceter container").html(questions[5].gif2).appendTo("body")
-    goodTimer(5, "#timer");
+    goodTimer(4, "#timer");
 }
-
+// START: This function () resets the new page after the two animate right/wrong functions() appear and calls the main page timer.
 function animationReset() {
-    
     $(".animateBox").hide()
     $(".question").hide()
     $(".answer").hide()
@@ -130,7 +128,7 @@ function animationReset() {
     getAnswer();
     timedOut(20, "#timer");
 }
-// 30 second timed out timer
+// Main page timer for creatPage() takes away score if runs down. 
 function timedOut(secs, targ) {
     var target1 = $(targ);
     target1.html("Time Left " + secs)
@@ -139,42 +137,51 @@ function timedOut(secs, targ) {
         clearTimeout(timer1);
         animateWrong();
         wrongAns++;
-        pageNum++;  
+        pageNum++;
     } else {
         secs--;
         timer1 = setTimeout('timedOut(' + secs + ',"' + targ + '")', 1000);
     }
 }
-// this timer is ran for all resets that don't have to do with running down the 20 sec clock.
+//START: This timer is ran for all resets that don't have to do with running down the 20 sec clock.
 function goodTimer(secs1, targ1) {
     var target2 = $(targ1);
     target2.html("Time Left " + secs1)
     if (secs1 < 1) {
         clearTimeout(timer);
         clearTimeout(timer1);
-        animationReset();
         scoreDisplay();
-        
-       
+        animationReset();
+        fixScoreDisplay();
     } else {
         secs1--;
         timer = setTimeout('goodTimer(' + secs1 + ',"' + targ1 + '")', 1000);
     }
 }
-
+// START: Here I display the # of right and wrong answers the player chose. 
 function scoreDisplay() {
     if (pageNum == 6) {
+        clearTimeout(timer);
+        clearTimeout(timer1);
         $(".question").hide()
         $(".answer").hide()
-        $("<div>").addClass("container right").html("Thanks For Playing").appendTo("body")
-        $("<div>").addClass("container right").html("Correct Answers = " + rightAns).appendTo("body")
-        $("<div>").addClass("container right").html("Wrong Answers = " + wrongAns).appendTo("body")
+        $("<div>").addClass("container answer1").html("Thanks For Playing").appendTo("body")
+        $("<div>").addClass("container answer1").html("Correct Answers = " + rightAns).appendTo("body")
+        $("<div>").addClass("container answer1").html("Wrong Answers = " + wrongAns).appendTo("body")
         goodTimer(5, "#timer");
         $("#timer").hide()
         pageNum = 0;
     }
 }
+// START: This timer is only for when the page is first loaded. 
 function startTimer() {
     timedOut(20, "#timer");
 }
 startTimer();
+// START: 
+function fixScoreDisplay() {
+    if (pageNum == 0) {
+    $(".question").hide()
+    $(".answer").hide()
+    }
+}
