@@ -54,18 +54,19 @@ var questions = [{
         Ans1: {
             q1: "Mark Hamill",
             q2: "Norrin Rad",
-            q3: "Berry Allen",
+            q3: "Barry Allen",
             q4: "Ben Walker"
         },
-        gif: "<img src='http://data.whicdn.com/images/53818085/original.gif'/>"
+        gif: "<img src='http://data.whicdn.com/images/53818085/original.gif'/>",
+        gif2: "<img src='http://www.lovethisgif.com/uploaded_images/63193-Guardians-Of-The-Galaxy-Rocket-Gif-Reaction-Gif.gif'/>"
     }
 ];
-
 
 var wrongAns = 0;
 var rightAns = 0;
 var pageNum = 0;
-
+var timer;
+var timer1;
 
 function createPage() {
 
@@ -84,71 +85,93 @@ function createPage() {
 createPage();
 
 function getAnswer() {
-
     $(".answer").on("click", function () {
-
         if ($(this).html() === questions[pageNum].Ans1.q3 + "?") {
             animateRight();
             pageNum++;
             rightAns++;
         } else {
+            animateWrong();
             pageNum++;
-            wrongAns++
+            wrongAns++;
         }
     })
 }
 getAnswer();
 
 function animateRight() {
-
+    clearTimeout(timer);
+    clearTimeout(timer1);
     $(".question").hide()
     $(".answer").hide()
-    $("<div>").addClass("animateBox").html(questions[pageNum].Ans1.q3).appendTo("body")
+    $("<div>").addClass("animateBox").html("Great job! " + questions[pageNum].Ans1.q3 + " is the right answer!").appendTo("body")
     $("<div>").addClass("gifBox").html(questions[pageNum].gif).appendTo("body")
-    setTimer(5, "#timer");
+    goodTimer(5, "#timer");
+}
 
-
+function animateWrong() {
+    clearTimeout(timer);
+    clearTimeout(timer1);
+    $(".question").hide()
+    $(".answer").hide()
+    $("<div>").addClass("animateBox").html("Ouch! " + questions[pageNum].Ans1.q3 + " is the right answer.").appendTo("body")
+    $("<div>").addClass("gifBox").html(questions[5].gif2).appendTo("body")
+    goodTimer(5, "#timer");
 }
 
 function animationReset() {
+    
     $(".animateBox").hide()
     $(".question").hide()
     $(".answer").hide()
     $(".gifBox").hide()
     createPage();
     getAnswer();
-    setTimer(7, "#timer");
-
-
+    timedOut(20, "#timer");
+}
+// 30 second timed out timer
+function timedOut(secs, targ) {
+    var target1 = $(targ);
+    target1.html("Time Left " + secs)
+    if (secs < 1) {
+        clearTimeout(timer);
+        clearTimeout(timer1);
+        animateWrong();
+        wrongAns++;
+        pageNum++;  
+    } else {
+        secs--;
+        timer1 = setTimeout('timedOut(' + secs + ',"' + targ + '")', 1000);
+    }
+}
+// this timer is ran for all resets that don't have to do with running down the 20 sec clock.
+function goodTimer(secs1, targ1) {
+    var target2 = $(targ1);
+    target2.html("Time Left " + secs1)
+    if (secs1 < 1) {
+        clearTimeout(timer);
+        clearTimeout(timer1);
+        animationReset();
+        // scoreDisplay();
+       
+    } else {
+        secs1--;
+        timer = setTimeout('goodTimer(' + secs1 + ',"' + targ1 + '")', 1000);
+    }
 }
 
 function scoreDisplay() {
-    $(".question").hide("Correct Answers = " + rightAns)
-    $(".answer").hide("Wrong Answers = " + wrongAns)
-    $("<div>").html().appendTo("body")
-    $("<div>").html().appendTo("body")
+    if (pageNum == 6) {
+        $(".question").hide()
+        $(".answer").hide()
+        $("<div>").html("Correct Answers = " + rightAns).appendTo("body")
+        $("<div>").html("Wrong Answers = " + wrongAns).appendTo("body")
+    }
 }
 
-function setTimer(secs, targ) {
-    var target1 = $(targ);
-    target1.html("Time Left " + secs)
-    if (secs < 1) {
-        clearTimeout(timer)
-        animationReset();
-        
-    } else {
-        secs--;
-        var timer = setTimeout('setTimer(' + secs + ',"' + targ + '")', 1000);
-    }
+
+function startTimer() {
+    timedOut(20, "#timer");
+
 }
-function clickTimer(secs, targ) {
-    var target1 = $(targ);
-    target1.html("Time Left " + secs)
-    if (secs < 1) {
-        clearTimeout(timer)
-        animationReset();
-    } else {
-        secs--;
-        var timer = setTimeout('setTimer(' + secs + ',"' + targ + '")', 1000);
-    }
-}
+startTimer();
