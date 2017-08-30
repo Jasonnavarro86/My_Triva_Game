@@ -1,3 +1,4 @@
+// My triva info inside of an object that is inside an array. 
 var questions = [{
         question: "Who Played Spiderman in Spiderman Home Coming?",
         Ans1: {
@@ -87,8 +88,9 @@ function getAnswer() {
     $(".answer").on("click", function () {
 
         if ($(this).html() === questions[pageNum].Ans1.q3 + "?") {
-            
             animateRight();
+            pageNum++;
+            rightAns++;
         } else {
             pageNum++;
             wrongAns++
@@ -103,33 +105,50 @@ function animateRight() {
     $(".answer").hide()
     $("<div>").addClass("animateBox").html(questions[pageNum].Ans1.q3).appendTo("body")
     $("<div>").addClass("gifBox").html(questions[pageNum].gif).appendTo("body")
-    pageNum++;
-    rightAns++;
+    setTimer(5, "#timer");
+
 
 }
 
-function animateWrong(){
+function animationReset() {
     $(".animateBox").hide()
-    $(".question").show()
-    $(".answer").show()
-
-}
-
-function scoreDisplay(){
     $(".question").hide()
     $(".answer").hide()
-    $("<div>").html().appendTo("body")    
+    $(".gifBox").hide()
+    createPage();
+    getAnswer();
+    setTimer(7, "#timer");
+
+
+}
+
+function scoreDisplay() {
+    $(".question").hide("Correct Answers = " + rightAns)
+    $(".answer").hide("Wrong Answers = " + wrongAns)
+    $("<div>").html().appendTo("body")
     $("<div>").html().appendTo("body")
 }
 
-setTimer(5, "#timer");
-function setTimer(secs, targ){
+function setTimer(secs, targ) {
     var target1 = $(targ);
-    target1.html("Time Left "+ secs)
-    if(secs < 1){
-        clearTimeout(timer);
-        secs=30;
+    target1.html("Time Left " + secs)
+    if (secs < 1) {
+        clearTimeout(timer)
+        animationReset();
+        
+    } else {
+        secs--;
+        var timer = setTimeout('setTimer(' + secs + ',"' + targ + '")', 1000);
     }
-    secs--;
-    var timer = setTimeout('setTimer('+secs+',"'+targ+'")',1000);
+}
+function clickTimer(secs, targ) {
+    var target1 = $(targ);
+    target1.html("Time Left " + secs)
+    if (secs < 1) {
+        clearTimeout(timer)
+        animationReset();
+    } else {
+        secs--;
+        var timer = setTimeout('setTimer(' + secs + ',"' + targ + '")', 1000);
+    }
 }
