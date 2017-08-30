@@ -1,13 +1,42 @@
-h2{
-    font-size: 24px;
+
+
+.question{
+    background-color: #BC3739;
+    color:white;
+    font-size: 47px;
+    text-align: center;
     font-weight: 400;
-    padding: 10px;
+    margin-left:10.3%;
+    height: 3em;
+    line-height: 2.4;
+    font-family: 'Anton', sans-serif;
+}
+body{
+    background-image: url("https://wallpaperscraft.com/image/marvel_comics_the_avengers_minimalism_98328_3840x2160.jpg");
+    background-size: 95%;
+    background-position: 50% -255%;
+    background-color: #000000;
+    background-attachment: fixed;
+    background-repeat:no-repeat;
+    
 }
 
-div{
-    padding:20px;
+#timer{
+    padding: 20px;
+    text-align: center;
+    color:white;
+    font-size: 29px;
+    background-color: rgba(28, 25, 25, 0.65);
+    font-family: 'Indie Flower', cursive;
+    
+    
 }
-
-.animate{
-    background-color: black;
+.answer{
+    background-color: rgba(53, 48, 48, 0.55);
+    color:#F9F0F0;
+    font-size: 40px;
+    text-align: center;
+    margin-left:10.3%;
+    font-family: 'Indie Flower', cursive;
+    
 }

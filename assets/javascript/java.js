@@ -59,7 +59,7 @@ var questions = [{
         },
         gif: "<img src='http://data.whicdn.com/images/53818085/original.gif'/>",
         gif2: "<img src='http://www.lovethisgif.com/uploaded_images/63193-Guardians-Of-The-Galaxy-Rocket-Gif-Reaction-Gif.gif'/>"
-    }
+    },
 ];
 
 var wrongAns = 0;
@@ -76,11 +76,12 @@ function createPage() {
     var divQ3 = storeQs[2];
     var divQ4 = storeQs[3];
 
-    $("<div>").addClass("container question").html(questions[pageNum].question).appendTo("body")
-    $("<div>").addClass("container answer").html(questions[pageNum].Ans1[divQ1] + "?").appendTo("body")
-    $("<div>").addClass("container answer").html(questions[pageNum].Ans1[divQ2] + "?").appendTo("body")
-    $("<div>").addClass("container answer").html(questions[pageNum].Ans1[divQ3] + "?").appendTo("body")
-    $("<div>").addClass("container answer").html(questions[pageNum].Ans1[divQ4] + "?").appendTo("body")
+    $("<div>").addClass("container question btn").html(questions[pageNum].question).appendTo("body")
+    $("<div>").addClass("container answer btn ").html(questions[pageNum].Ans1[divQ1] + "?").appendTo("body")
+    $("<div>").addClass("container answer btn ").html(questions[pageNum].Ans1[divQ2] + "?").appendTo("body")
+    $("<div>").addClass("container answer btn").html(questions[pageNum].Ans1[divQ3] + "?").appendTo("body")
+    $("<div>").addClass("container answer btn").html(questions[pageNum].Ans1[divQ4] + "?").appendTo("body")
+    
 }
 createPage();
 
@@ -104,8 +105,8 @@ function animateRight() {
     clearTimeout(timer1);
     $(".question").hide()
     $(".answer").hide()
-    $("<div>").addClass("animateBox").html("Great job! " + questions[pageNum].Ans1.q3 + " is the right answer!").appendTo("body")
-    $("<div>").addClass("gifBox").html(questions[pageNum].gif).appendTo("body")
+    $("<div>").addClass("animateBox container").html("Great job! " + questions[pageNum].Ans1.q3 + " is the right answer!").appendTo("body")
+    $("<div>").addClass("gifBox container").html(questions[pageNum].gif).appendTo("body")
     goodTimer(5, "#timer");
 }
 
@@ -114,8 +115,8 @@ function animateWrong() {
     clearTimeout(timer1);
     $(".question").hide()
     $(".answer").hide()
-    $("<div>").addClass("animateBox").html("Ouch! " + questions[pageNum].Ans1.q3 + " is the right answer.").appendTo("body")
-    $("<div>").addClass("gifBox").html(questions[5].gif2).appendTo("body")
+    $("<div>").addClass("animateBox container").html("Ouch! " + questions[pageNum].Ans1.q3 + " was the right answer.").appendTo("body")
+    $("<div>").addClass("gifBox container").html(questions[5].gif2).appendTo("body")
     goodTimer(5, "#timer");
 }
 
@@ -152,7 +153,8 @@ function goodTimer(secs1, targ1) {
         clearTimeout(timer);
         clearTimeout(timer1);
         animationReset();
-        // scoreDisplay();
+        scoreDisplay();
+        
        
     } else {
         secs1--;
@@ -164,14 +166,15 @@ function scoreDisplay() {
     if (pageNum == 6) {
         $(".question").hide()
         $(".answer").hide()
-        $("<div>").html("Correct Answers = " + rightAns).appendTo("body")
-        $("<div>").html("Wrong Answers = " + wrongAns).appendTo("body")
+        $("<div>").addClass("container right").html("Thanks For Playing").appendTo("body")
+        $("<div>").addClass("container right").html("Correct Answers = " + rightAns).appendTo("body")
+        $("<div>").addClass("container right").html("Wrong Answers = " + wrongAns).appendTo("body")
+        goodTimer(5, "#timer");
+        $("#timer").hide()
+        pageNum = 0;
     }
 }
-
-
 function startTimer() {
     timedOut(20, "#timer");
-
 }
 startTimer();
