@@ -105,8 +105,8 @@ function animateRight() {
     clearTimeout(timer1);
     $(".question").hide()
     $(".answer").hide()
-    $("<div>").addClass("animateBox container").html("Great job! " + questions[pageNum].Ans1.q3 + " is the right answer!").appendTo("body")
-    $("<div>").addClass("gifBox container").html(questions[pageNum].gif).appendTo("body")
+    $("<div>").addClass("animateBox answer1 container").html("Great job! " + questions[pageNum].Ans1.q3 + " is the right answer!").appendTo("body")
+    $("<div>").addClass("gifBox text-center container").html(questions[pageNum].gif).appendTo("body")
     goodTimer(5, "#timer");
 }
 
@@ -115,8 +115,8 @@ function animateWrong() {
     clearTimeout(timer1);
     $(".question").hide()
     $(".answer").hide()
-    $("<div>").addClass("animateBox container").html("Ouch! " + questions[pageNum].Ans1.q3 + " was the right answer.").appendTo("body")
-    $("<div>").addClass("gifBox container").html(questions[5].gif2).appendTo("body")
+    $("<div>").addClass("animateBox answer1 container").html("Ouch! " + questions[pageNum].Ans1.q3 + " was the right answer.").appendTo("body")
+    $("<div>").addClass("gifBox text-ceter container").html(questions[5].gif2).appendTo("body")
     goodTimer(5, "#timer");
 }
 

@@ -40,3 +40,24 @@ body{
     font-family: 'Indie Flower', cursive;
     
 }
+.answer:hover {
+background-color: #201F1F;
+}
+
+.answer1{
+    padding-top: 5%;
+    
+    color:#F9F0F0;
+    font-size: 60px;
+    text-align: center;
+    margin-left:10.3%;
+    font-family: 'Indie Flower', cursive;
+    
+}
+img {
+    display: block;
+    margin: auto;
+    width: 40%;
+}
+
+
