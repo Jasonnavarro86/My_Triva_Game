@@ -1,4 +1,4 @@
-// START: My triva info inside of an object that is inside an array. 
+// START: My triva questions, answers, losing gifs, and winning gifs. 
 var questions = [{
         question: "Who Played Spiderman in Spiderman-Home-Coming?",
         Ans1: {
@@ -29,8 +29,8 @@ var questions = [{
             q4: "Barry Allen",
             q3: "Nick Fury"
         },
-        gif: "<img src='https://media.giphy.com/media/3GKWesp8SVVGo/giphy.gif'/>",
-        gif2: "<img src='http://68.media.tumblr.com/tumblr_mbfx76wyxn1r0c27po1_250.gif'/>"
+        gif: "<img src='http://static.tumblr.com/05dbb58b880c15c862c64d8f2624e883/qrzqykw/5Chmkehwt/tumblr_static_tumblr_mag4nw0akh1rev7p6o1_500.gif'/>",
+        gif2: "<img src='http://25.media.tumblr.com/8557ff8d49013b10373b142fc6f240c3/tumblr_mkpeun1BUt1qhd14co4_250.gif'/>"
     },
 
     {
@@ -42,7 +42,7 @@ var questions = [{
             q4: "Peter Parker"
         },
         gif: "<img src='https://media1.popsugar-assets.com/files/thumbor/4E_ni6DV9ne4oFG97W_cP_ta8pI/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2015/04/21/871/n/1922283/4d253a24efb7305a_3673790-2595346539-capta/i/He-Knows.gif'/>",
-        gif2: "<img src='https://media.giphy.com/media/o80k0RHRR4qQM/giphy.gif'/>"
+        gif2: "<img src='https://media.tenor.com/images/15c977ec9626afdf2975da9e6b4640e0/tenor.gif'/>"
     },
     {
         question: "Who is the founder of Marvel?",
@@ -63,8 +63,8 @@ var questions = [{
             q3: "Barry Allen",
             q4: "Ben Walker"
         },
-        gif: "<img src='http://data.whicdn.com/images/53818085/original.gif'/>",
-        gif2: "<img src='http://www.lovethisgif.com/uploaded_images/63193-Guardians-Of-The-Galaxy-Rocket-Gif-Reaction-Gif.gif'/>"
+        gif: "<img src='https://media.giphy.com/media/lXiRDbPcRYfUgxOak/giphy.gif'/>",
+        gif2: "<img src='https://68.media.tumblr.com/5f5b94e8527a00d77ce909834b48c5a8/tumblr_ocdi2jaKmw1tm49cqo6_500.gif'/>"
     },
 ];
 // START: My global variables that change the score, the timer resets, and the object array #. pageNum var is the most important to keep changing the obj array questions and anwers.
@@ -164,22 +164,16 @@ function goodTimer(secs1, targ1) {
     }
 }
 //START: This timer is for auto resetting the game after score is displayed.
-
 function resetTimer(secs2, targ2) {
-    // var target3 = $(targ2);
-    // target3.html("Time Left " + secs2)
     if (secs2 < 1) {
         clearTimeout(timer3);
         $(".answer1").hide()
-        startButton();
-        
+        startButton(); 
     } else {
         secs2--;
         timer3 = setTimeout('resetTimer(' + secs2 + ',"' + targ2 + '")', 1000);
     }
 }
-
-
 // START: Here I display the # of right and wrong answers the player chose. 
 function scoreDisplay() {
     if (pageNum == 6) {
@@ -191,8 +185,7 @@ function scoreDisplay() {
         $("<div>").addClass("container answer1").html("Thanks For Playing").appendTo("body")
         $("<div>").addClass("container answer1").html("Correct Answers = " + rightAns).appendTo("body")
         $("<div>").addClass("container answer1").html("Wrong Answers = " + wrongAns).appendTo("body")
-        resetTimer(4, "#timer");
-        // $("#timer").html("New game will resume shortly.")
+        resetTimer(3, "#timer");
         pageNum = 0;
     }
 }
@@ -200,8 +193,7 @@ function scoreDisplay() {
 function startTimer() {
     timedOut(20, "#timer");
 }
-
-// START: 
+// START: This function() assists the scoreDisplay() being called from the goodTimer().
 function fixScoreDisplay() {
     if (pageNum == 0) {
         $(".question").hide()
@@ -209,11 +201,13 @@ function fixScoreDisplay() {
         clearTimeout(timer1);
     }
 }
-
+// START: Here I call my start / restart button at the start and end of game.
 function startButton() {
-  
     $("<button>").addClass("start btn btn lg btn-danger").html("AVENGERS TRIVA GAME! <br> " + " click to start.").appendTo("body")
     $(".start").on("click", function () {
+        wrongAns = 0;
+        rightAns = 0;
+        $("#timer").show()
         createPage();
         getAnswer();
         startTimer();

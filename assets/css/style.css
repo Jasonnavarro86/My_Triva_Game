@@ -1,3 +1,27 @@
+
+
+/* Here I have my backround Img. */
+body{
+    background-image: url("https://wallpaperscraft.com/image/marvel_comics_the_avengers_minimalism_98328_3840x2160.jpg");
+    background-size: 95%;
+    background-position: 50% -255%;
+    background-color: #000000;
+    background-attachment: fixed;
+    background-repeat:no-repeat;
+    
+}
+/* This is the display box for my timer. */
+#timer{
+    padding: 20px;
+    text-align: center;
+    color:white;
+    font-size: 29px;
+    background-color: rgba(28, 25, 25, 0.65);
+    font-family: 'Indie Flower', cursive;
+    
+    
+}
+/* This is my question display. */
 .question{
     background-color: #BC3739;
     color:white;
@@ -9,26 +33,7 @@
     line-height: 2.4;
     font-family: 'Anton', sans-serif;
 }
-body{
-    background-image: url("https://wallpaperscraft.com/image/marvel_comics_the_avengers_minimalism_98328_3840x2160.jpg");
-    background-size: 95%;
-    background-position: 50% -255%;
-    background-color: #000000;
-    background-attachment: fixed;
-    background-repeat:no-repeat;
-    
-}
-
-#timer{
-    padding: 20px;
-    text-align: center;
-    color:white;
-    font-size: 29px;
-    background-color: rgba(28, 25, 25, 0.65);
-    font-family: 'Indie Flower', cursive;
-    
-    
-}
+/* This is my answer display. */
 .answer{
     background-color: rgba(53, 48, 48, 0.55);
     color:#F9F0F0;
@@ -38,26 +43,33 @@ body{
     font-family: 'Indie Flower', cursive;
     
 }
+/* This is the highlight for when a player hovers over the answers. */
 .answer:hover {
 background-color: #201F1F;
 }
 
+/* This is the display of the right or wrong answer that plays with the gif. */
 .answer1{
-    padding-top: 5%;
-    
+    font-weight: 700;
     color:#F9F0F0;
     font-size: 60px;
+    line-height: 2.0;
     text-align: center;
     margin-left:10.3%;
     font-family: 'Indie Flower', cursive;
     
+    
 }
+/* These two img & gifBox is for my gif elements */
 img {
     display: block;
     margin: auto;
     width: 40%;
 }
-
+#gifBox{
+    margin-top: 1%;
+}
+/* This is my start button. */
 .start{
     color:#F9F0F0;
     font-size: 73.4px;
@@ -66,5 +78,7 @@ img {
     margin-top:10%;
     font-family: 'Anton', sans-serif;
 }
+
+
 
 
