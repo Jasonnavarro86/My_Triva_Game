@@ -119,7 +119,7 @@ function animateWrong() {
     clearTimeout(timer1);
     $(".question").hide()
     $(".answer").hide()
-    $("<div>").addClass("animateBox answer1 container").html("Ouch! " + questions[pageNum].Ans1.q3 + " was the right answer.").appendTo("body")
+    $("<div>").addClass("animateBox answer1 container").html("Oops! " + questions[pageNum].Ans1.q3 + " was the right answer.").appendTo("body")
     $("<div>").addClass("gifBox text-ceter container").html(questions[pageNum].gif2).appendTo("body")
     goodTimer(4, "#timer");
 }
