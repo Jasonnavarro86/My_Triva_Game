@@ -19,7 +19,7 @@ var questions = [{
             q4: "Antman"
         },
         gif: "<img src='https://media.giphy.com/media/Ch1zCx8tu6DQY/giphy.gif'/>",
-        gif2: "<img src='http://www.lovethisgif.com/uploaded_images/63193-Guardians-Of-The-Galaxy-Rocket-Gif-Reaction-Gif.gif'/>"
+        gif2: "<img src='https://media.tenor.com/images/72433f8d9b8c6e7fc629fde7b098bad8/tenor.gif'/>"
     },
     {
         question: "Who's is in charge of the Avengers?",
@@ -163,18 +163,36 @@ function goodTimer(secs1, targ1) {
         timer = setTimeout('goodTimer(' + secs1 + ',"' + targ1 + '")', 1000);
     }
 }
+//START: This timer is for auto resetting the game after score is displayed.
+
+function resetTimer(secs2, targ2) {
+    // var target3 = $(targ2);
+    // target3.html("Time Left " + secs2)
+    if (secs2 < 1) {
+        clearTimeout(timer3);
+        $(".answer1").hide()
+        startButton();
+        
+    } else {
+        secs2--;
+        timer3 = setTimeout('resetTimer(' + secs2 + ',"' + targ2 + '")', 1000);
+    }
+}
+
+
 // START: Here I display the # of right and wrong answers the player chose. 
 function scoreDisplay() {
     if (pageNum == 6) {
         clearTimeout(timer);
         clearTimeout(timer1);
         $(".question").hide()
+        $("#timer").hide()
         $(".answer").hide()
         $("<div>").addClass("container answer1").html("Thanks For Playing").appendTo("body")
         $("<div>").addClass("container answer1").html("Correct Answers = " + rightAns).appendTo("body")
         $("<div>").addClass("container answer1").html("Wrong Answers = " + wrongAns).appendTo("body")
-        goodTimer(5, "#timer");
-        $("#timer").hide()
+        resetTimer(4, "#timer");
+        // $("#timer").html("New game will resume shortly.")
         pageNum = 0;
     }
 }
@@ -188,10 +206,12 @@ function fixScoreDisplay() {
     if (pageNum == 0) {
         $(".question").hide()
         $(".answer").hide()
+        clearTimeout(timer1);
     }
 }
 
 function startButton() {
+  
     $("<button>").addClass("start btn btn lg btn-danger").html("AVENGERS TRIVA GAME! <br> " + " click to start.").appendTo("body")
     $(".start").on("click", function () {
         createPage();
