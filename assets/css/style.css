@@ -3,8 +3,8 @@
 /* Here I have my backround Img. */
 body{
     background-image: url("https://wallpaperscraft.com/image/marvel_comics_the_avengers_minimalism_98328_3840x2160.jpg");
-    background-size: 95%;
-    background-position: 50% -255%;
+    background-size: 100%;
+    background-position: 0px 170px;
     background-color: #000000;
     background-attachment: fixed;
     background-repeat:no-repeat;

@@ -113,7 +113,7 @@ function animateRight() {
     $("<div>").addClass("gifBox text-center container").html(questions[pageNum].gif).appendTo("body")
     goodTimer(4, "#timer");
 }
-// START: If the player clicks the wrong answer this function() brings the "Ouch!" info , and calls timer.
+// START: If the player clicks the wrong answer this function() brings the "Oops!" info , and calls timer.
 function animateWrong() {
     clearTimeout(timer);
     clearTimeout(timer1);
