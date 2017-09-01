@@ -203,7 +203,7 @@ function fixScoreDisplay() {
 }
 // START: Here I call my start / restart button at the start and end of game.
 function startButton() {
-    $("<button>").addClass("start btn btn lg btn-danger").html("AVENGERS TRIVA GAME! <br> " + " click to start.").appendTo("body")
+    $("<button>").addClass("start btn btn lg btn-danger").html("AVENGERS TRIVIA GAME! <br> " + " click to start.").appendTo("body")
     $(".start").on("click", function () {
         wrongAns = 0;
         rightAns = 0;
