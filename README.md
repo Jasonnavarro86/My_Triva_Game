@@ -1,4 +1,4 @@
-# My_Triva_Game
+# My_Trivia_Game
 
 
 I chose to create a Marvel Trivia game so that my two sons would really be able to share in my work. They absolutely love Marvel heros. 
